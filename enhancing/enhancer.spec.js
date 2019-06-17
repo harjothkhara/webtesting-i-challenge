@@ -57,6 +57,27 @@ describe('enhancer.js', () => {
             });
         }); 
     });
+    
+    describe ('fail() method', () => {
+        it('returns an item with durability decreasing by 5 if enhancement is less than 15, else it decreased by 10. If enhancement is greater than 16 enhancement decreases by 1.' , () => {
+            expect(enhancer.fail(item1)).toEqual({ 
+                name: item1.name,
+                enhancement: item1.enhancement,
+                durability: 45  
+            });
+            expect(enhancer.fail(item2)).toEqual({
+                name: item2.name,
+                enhancement: item2.enhancement,
+                durability: 65  
+            });
+            expect(enhancer.fail(item3)).toEqual({
+                name: item3.name,
+                enhancement: 19, 
+                durability: 90 
+            });
 
+        })
+           
+    })
 
 })
