@@ -36,6 +36,16 @@ describe('enhancer.js', () => {
             expect(result).toEqual(expected)
             // .toEqual will check properties of object not the reference in memory -> deep equality vs. toBe a strict equality (===)
         });
+        expect(enhancer.repair(item2)).toEqual({
+            name: item2.name,
+            enhancement: item2.enhancement,
+            durability: 100
+        });
+        expect(enhancer.repair(item3)).toEqual({
+            name: item3.name,
+            enhancement: item3.enhancement,
+            durability: 100
+        });
     })
 
     describe ('succeed() method', () => {
