@@ -85,9 +85,24 @@ describe('enhancer.js', () => {
                 enhancement: 19, 
                 durability: 90 
             });
+        });     
+    });
 
-        })
-           
-    })
+    describe('get() method', () => {
+        it('return an item with the name modified to contain enhancement level, unless enhancement level is 0', () => {
+            expect(enhancer.get(item1)).toEqual({
+                ...item1,
+                name: '[+12] Anakin Skywalker'
+            });
+            expect(enhancer.get(item2)).toEqual({
+                ...item2,
+                name: '[+4] Kylo Ren'
+            });
+            expect(enhancer.get(item3)).toEqual({
+                ...item3,
+                name: '[+20] Han Solo'
+            });
+        });
+    });
 
 })
