@@ -2,20 +2,20 @@ const enhancer = require('./enhancer.js');
 // test away!
 
 const item1 = {
-    name: 'item 1',
-    enhancement: 12,
-    durability: 50
+    name: 'Anakin Skywalker',
+    enhancement: 12, // 0 - 20
+    durability: 50  // 0 - 100
 };
 
 const item2 = {
-    name: 'item 2',
-    enhancement: 18,
+    name: 'Kylo Ren',
+    enhancement: 4,
     durability: 70
 };
 
 const item3 = {
-    name: 'item 3',
-    enhancement: 4,
+    name: 'Han Solo',
+    enhancement: 20,
     durability: 100
 };
 
@@ -23,7 +23,7 @@ const item3 = {
 
 describe('enhancer.js', () => {
     describe ('repair() method', () => {
-        it('accepts an item object and returns a new item with durability restored to 100', () => {
+        it('returns an item with the durability restored to 100', () => {
             // setup
             const expected = { // what we want happen
                 name: item1.name,
@@ -34,7 +34,29 @@ describe('enhancer.js', () => {
             const result = enhancer.repair(item1);
             // verify it works
             expect(result).toEqual(expected)
-            // .toEqual will check properties of object not the reference in memory. 
-        })
+            // .toEqual will check properties of object not the reference in memory -> deep equality vs. toBe a strict equality (===)
+        });
     })
+
+    describe ('succeed() method', () => {
+        it('returns an item with the enhancement 1 point higher, unless it is at 20, where it remains unchanged.', () => {
+            expect(enhancer.succeed(item1)).toEqual({
+                name: item1.name,
+                enhancement: 13,
+                durability: item1.durability
+            });
+            expect(enhancer.succeed(item2)).toEqual({
+                name: item2.name,
+                enhancement: 5,
+                durability: item2.durability
+            });
+            expect(enhancer.succeed(item3)).toEqual({
+                name: item3.name,
+                enhancement: 20,
+                durability: item3.durability
+            });
+        }); 
+    });
+
+
 })
